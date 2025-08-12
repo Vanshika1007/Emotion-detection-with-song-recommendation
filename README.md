@@ -61,5 +61,4 @@ This project combines **Computer Vision**, **Natural Language Processing**, and 
 | ![Detection](detection.png) | ![Songs](songs.png) |
 
 
-## 📂 Project Structure
 
