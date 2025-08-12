@@ -58,7 +58,7 @@ This project combines **Computer Vision**, **Natural Language Processing**, and 
 
 | Emotion Detection | Song Suggestions |
 |-------------------|------------------|
-| ![Detection](detection.png) | ![Songs](songs.png) |
+| ![Detection](detection.PNG) | ![Songs](songs.PNG |
 
 
 
