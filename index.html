@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emotion Detector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.2);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        input[type="text"] {
+            padding: 15px 20px;
+            width: 80%;
+            font-size: 16px;
+            border: 2px solid #dfe6e9;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input[type="text"]:focus {
+            border-color: #6c5ce7;
+            box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
+        }
+
+        input[type="submit"] {
+            padding: 12px 30px;
+            font-size: 16px;
+            margin-top: 20px;
+            background: linear-gradient(to right, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 80%;
+            max-width: 600px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .result strong {
+            color: #6c5ce7;
+        }
+
+        .playlist {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .playlist ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .playlist li {
+            margin: 10px 0;
+        }
+
+        .playlist a {
+            text-decoration: none;
+            color: #6c5ce7;
+            font-weight: 500;
+        }
+
+        .playlist a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Emotion Detection Web App</h1>
+    <form method="POST" action="/predict">
+        <input type="text" name="text" placeholder="Type your sentence here" required>
+        <br>
+        <input type="submit" value="Detect Emotion">
+    </form>
+
+    {% if emotion %}
+    <div class="result">
+        <strong>Input:</strong> {{ text }} <br>
+        <strong>Detected Emotion:</strong> {{ emotion }}
+
+        {% if playlist %}
+        <div class="playlist">
+            <strong>🎵 Recommended Playlist:</strong>
+            <ul>
+                {% for song in playlist %}
+                <li><a href="{{ song.url }}" target="_blank">🎧 {{ song.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+</body>
+</html>
